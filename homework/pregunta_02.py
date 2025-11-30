@@ -5,6 +5,8 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 librerias de pandas para resolver las preguntas.
 """
 
+from .utilidades import cargar_tbl0
+
 
 def pregunta_02():
     """
@@ -14,3 +16,7 @@ def pregunta_02():
     4
 
     """
+    df = cargar_tbl0()
+    return df.shape[1]
+
+

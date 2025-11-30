@@ -4,6 +4,7 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
+from .utilidades import cargar_tbl0, cargar_tbl2
 
 
 def pregunta_13():
@@ -20,3 +21,14 @@ def pregunta_13():
     E    275
     Name: c5b, dtype: int64
     """
+    tbl0 = cargar_tbl0()
+    tbl2 = cargar_tbl2()
+
+    combinado = tbl0.merge(tbl2, on="c0")
+
+    serie = combinado.groupby("c1")["c5b"].sum()
+    serie.name = None
+
+    return serie
+
+

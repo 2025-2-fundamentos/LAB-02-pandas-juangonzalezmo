@@ -4,6 +4,7 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
+from .utilidades import cargar_tbl0
 
 
 def pregunta_10():
@@ -20,3 +21,19 @@ def pregunta_10():
     D                   1:2:3:5:5:7
     E   1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
+    df = cargar_tbl0()
+
+    df_ordenado = df.sort_values(["c1", "c2"])
+
+    tabla = (
+        df_ordenado.groupby("c1")["c2"]
+        .apply(lambda s: ":".join(str(x) for x in s))
+        .to_frame()
+    )
+
+    tabla.index.name = "_c1"
+
+    return tabla
+
+
+

@@ -4,6 +4,7 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
+from .utilidades import cargar_tbl0
 
 
 def pregunta_03():
@@ -21,3 +22,11 @@ def pregunta_03():
     Name: count, dtype: int64
 
     """
+    df = cargar_tbl0()
+
+    serie = df.groupby("c1").size()
+    serie.name = None  # para que coincida con el test
+
+    return serie
+
+
